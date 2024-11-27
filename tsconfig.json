@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "es6",                      // Define a versão do ECMAScript a ser usada
+    "module": "commonjs",                 // Define o sistema de módulos
+    "strict": true,                       // Ativa todas as verificações de tipo
+    "esModuleInterop": true,              // Permite a interoperabilidade entre ES Modules e CommonJS
+    "allowSyntheticDefaultImports": true, // Permite a importação de exportações padrão mesmo em CommonJS
+    "skipLibCheck": true,                 // Ignora a verificação de tipos em bibliotecas
+    "forceConsistentCasingInFileNames": true, // Força consistência no uso de maiúsculas/minúsculas em nomes de arquivos
+    "outDir": "./dist",                   // Diretório de saída para arquivos compilados
+    "rootDir": "./src",                   // Diretório raiz dos arquivos fonte
+    "typeRoots": ["./node_modules/@types", "./src/@types"], // Diretórios para tipos personalizados
+    "strictNullChecks": true              // Verifica rigorosamente valores nulos ou indefinidos
+  },
+  "include": ["src/**/*.ts"],             // Inclui todos os arquivos .ts na pasta src
+  "exclude": ["node_modules", "dist"]     // Exclui node_modules e dist da compilação
+}

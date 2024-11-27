@@ -1,0 +1,77 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Specialty {
+  id     Int     @id @default(autoincrement())
+  name   String  @unique
+  users  User[]
+}
+
+model User {
+  id            String           @id @default(uuid())
+  username      String           @unique
+  password      String
+  role          Role             @default(CLIENT)
+  createdAt     DateTime         @default(now())
+  updatedAt     DateTime         @updatedAt
+  specialtyId   Int?
+  specialty     Specialty?       @relation(fields: [specialtyId], references: [id])
+  permissions   UserPermission[]
+  clientContracts  Contract[]    @relation("ClientContracts")
+  architectContracts Contract[] @relation("ArchitectContracts")
+}
+
+model Contract {
+  id           String       @id @default(uuid())
+  clientId     String
+  architectId  String
+  description  String
+  client       User         @relation("ClientContracts", fields: [clientId], references: [id])
+  architect    User         @relation("ArchitectContracts", fields: [architectId], references: [id])
+  checklist    Checklist[]
+}
+
+
+model Checklist {
+  id         String     @id @default(uuid())
+  contractId String
+  tasks      Task[]
+  contract   Contract   @relation(fields: [contractId], references: [id])
+}
+
+model Task {
+  id           String       @id @default(uuid())
+  checklistId  String
+  name         String
+  checklist    Checklist    @relation(fields: [checklistId], references: [id])
+}
+
+model UserPermission {
+  id           String      @id @default(uuid())
+  userId       String
+  permissionId String
+  createdAt    DateTime    @default(now())
+  user         User        @relation(fields: [userId], references: [id])
+  permission   Permission  @relation(fields: [permissionId], references: [id])
+  
+  @@unique([userId, permissionId])
+}
+
+model Permission {
+  id   String @id @default(uuid())
+  name String @unique
+
+  UserPermission UserPermission[]
+}
+
+enum Role {
+  ADMIN
+  CLIENT
+  ARCHITECT
+}

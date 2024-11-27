@@ -1,0 +1,49 @@
+{
+  "name": "checklist_residencial",
+  "version": "1.0.0",
+  "description": "my-architecture-project/ ├── prisma/ │   ├── schema.prisma       # Esquema do Prisma para definição de models e tabelas do BD │   └── migrations/         # Diretório de migrações do Prisma ├── src/ │   ├── controllers/ │   │   ├── projectController.ts    # Controlador para projetos e fases │   │   ├── fileController.ts       # Controlador para upload de arquivos │   │   └── emailController.ts      # Controlador para envio de emails │   ├── services/ │   │   ├── emailService.ts         # Serviço de envio de emails │   │   ├── fileService.ts          # Serviço de manipulação de arquivos (Excel/PDF) │   │   └── cronService.ts          # Serviço para rodar cron jobs │   ├── routes/ │   │   ├── projectRoutes.ts        # Rotas para projetos e fases │   │   ├── fileRoutes.ts           # Rotas para upload de arquivos │   │   └── emailRoutes.ts          # Rotas para envio de emails │   ├── middlewares/ │   │   └── authMiddleware.ts       # Middleware para autenticação │   ├── utils/ │   │   └── prismaClient.ts         # Configuração do cliente Prisma │   ├── app.ts                      # Arquivo principal para inicializar o app Express │   ├── server.ts                   # Servidor que inicia a aplicação ├── uploads/                        # Diretório de armazenamento de arquivos enviados │   ├── exemplo.pdf                 # Arquivos PDF enviados │   ├── exemplo.xlsx                # Arquivos Excel gerados ├── Dockerfile                      # Configuração Docker ├── docker-compose.yml              # Docker Compose para subir o projeto com Postgres ├── package.json                    # Dependências do projeto ├── tsconfig.json                   # Configurações do TypeScript └── README.md                       # Documentação do projeto",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon src/server.ts",
+    "start": "ts-node src/server.ts",
+    "build": "tsc",
+    "prisma:migrate": "npx prisma migrate dev",
+    "prisma:generate": "npx prisma generate",
+    "prisma:studio": "npx prisma studio",
+    "lint": "eslint 'src/**/*.ts'",
+    "test": "vitest",
+    "docker:up": "docker-compose up --build",
+    "docker:down": "docker-compose down"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@prisma/client": "^5.22.0",
+    "@types/bcrypt": "^5.0.2",
+    "axios": "^1.7.7",
+    "bcrypt": "^5.1.1",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express-validator": "^7.2.0",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^1.4.5-lts.1",
+    "nodemailer": "^6.9.15",
+    "redis": "^4.7.0",
+    "winston": "^3.15.0"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "@types/express-validator": "^2.20.33",
+    "@types/jsonwebtoken": "^9.0.7",
+    "@types/node": "^22.7.6",
+    "express": "^4.21.1",
+    "nodemon": "^3.1.7",
+    "prisma": "^5.22.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.3"
+  }
+}
