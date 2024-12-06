@@ -28,6 +28,15 @@ export const authenticateUser = async (username: string, password: string): Prom
 
 // Outras funções permanecem inalteradas
 export const createUser = async (username: string, password: string, role: Role): Promise<User> => {
+  // Verificar se o nome de usuário já existe
+  const existingUser = await prisma.user.findUnique({
+    where: { username },
+  });
+
+  if (existingUser) {
+    throw new Error('O nome de usuário já está em uso. Por favor, escolha um nome de usuário diferente.');
+  }
+
   const hashedPassword = await bcrypt.hash(password, 10);
 
   return prisma.user.create({

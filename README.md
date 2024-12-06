@@ -81,7 +81,7 @@ sudo docker rm -f checklist_residencial_novo
 Depois de parar e remover todos os containers, você pode tentar rodar o comando novamente:
 
 ```bash
-sudo docker run --name checklist_residencial_novo -p 5434:5432 -e POSTGRES_PASSWORD=nova_senha -e POSTGRES_USER=postgres -d postgres
+sudo docker run --name checklist_residencial -p 5434:5432 -e POSTGRES_PASSWORD=nova_senha -e POSTGRES_USER=postgres -d postgres
 ```
 
 Isso deve funcionar agora, já que o nome `checklist_residencial_novo` estará disponível.

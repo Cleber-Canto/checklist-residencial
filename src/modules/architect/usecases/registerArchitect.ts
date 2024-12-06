@@ -10,7 +10,7 @@ export async function registerArchitect(username: string, password: string, spec
       password: hashedPassword,
       role: 'ARCHITECT',
       specialty: {
-        connect: { id: specialtyId },
+        connect: { id: specialtyId.toString() },
       },
     },
   });
