@@ -87,6 +87,11 @@ sudo docker run --name checklist_residencial -p 5434:5432 -e POSTGRES_PASSWORD=n
 Isso deve funcionar agora, já que o nome `checklist_residencial_novo` estará disponível.
 
 
+### 5. Rodar as migrações do Prisma:
+npx prisma migrate dev
+
+### 6. Rodar a aplicação:
+npm run dev
 
 
 Requisitos Funcionais - Checklist Residencial
