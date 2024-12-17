@@ -33,7 +33,9 @@ my-architecture-project/
 
 
 
-sudo docker run --name checklist_residencial_novo -p 5434:5432 -e POSTGRES_PASSWORD=nova_senha -e POSTGRES_USER=postgres -d postgres
+sudo docker run --name checklist_residencial -p 5432:5432 -e POSTGRES_PASSWORD=nova_senha -e POSTGRES_USER=postgres -d postgres
+
+sudo systemctl enable --now docker docker.socket container 
 
 
 O erro que você está recebendo indica que já existe um container com o nome `checklist_residencial_novo` em execução, o que impede que você crie um novo container com o mesmo nome.
@@ -82,7 +84,13 @@ Depois de parar e remover todos os containers, você pode tentar rodar o comando
 
 ```bash
 sudo docker run --name checklist_residencial -p 5434:5432 -e POSTGRES_PASSWORD=nova_senha -e POSTGRES_USER=postgres -d postgres
+
+## Listar as imagens locais disponíveis
+sudo docker images
 ```
+## Rodar a aplicação
+sudo docker run --name checklist_app -p 3000:3000 -d checklist_residencial-app
+
 
 Isso deve funcionar agora, já que o nome `checklist_residencial_novo` estará disponível.
 
